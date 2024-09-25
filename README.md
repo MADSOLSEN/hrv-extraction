@@ -41,9 +41,9 @@ This repository contains MATLAB code for extracting Heart Rate Variability (HRV)
 
 This code was used in the following journal publications:
 
-[^1] Olsen, M., Schneider, L. D., Cheung, J., Peppard, P. E., Jennum, P. J., Mignot, E., & Sørensen, H. B. D. (2018). Automatic, electrocardiographic-based detection of autonomic arousals and their association with cortical arousals, leg movements, and respiratory events in sleep. *Sleep, 41*(3), zsy006. [https://doi.org/10.1093/sleep/zsy006](https://doi.org/10.1093/sleep/zsy006)
+[^1]: Olsen, M., Schneider, L. D., Cheung, J., Peppard, P. E., Jennum, P. J., Mignot, E., & Sørensen, H. B. D. (2018). Automatic, electrocardiographic-based detection of autonomic arousals and their association with cortical arousals, leg movements, and respiratory events in sleep. *Sleep, 41*(3), zsy006. [https://doi.org/10.1093/sleep/zsy006](https://doi.org/10.1093/sleep/zsy006)
 
-[^2] Olsen, M., Mignot, E., Jennum, P. J., & Sørensen, H. B. D. (2020). Robust, ECG-based algorithm for Sleep Disordered Breathing detection in large population-based cohorts using an automatic, data-driven approach. *Sleep, 43*(5), Article zsz276. [https://doi.org/10.1093/sleep/zsz276](https://doi.org/10.1093/sleep/zsz276)
+[^2]: Olsen, M., Mignot, E., Jennum, P. J., & Sørensen, H. B. D. (2020). Robust, ECG-based algorithm for Sleep Disordered Breathing detection in large population-based cohorts using an automatic, data-driven approach. *Sleep, 43*(5), Article zsz276. [https://doi.org/10.1093/sleep/zsz276](https://doi.org/10.1093/sleep/zsz276)
 
 ## Contact
 
