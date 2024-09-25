@@ -2,7 +2,7 @@
 
 This repository contains MATLAB code for extracting Heart Rate Variability (HRV) from Electrocardiogram (ECG) signals. The code has been applied in research on autonomic arounsals[^1] and the detection of sleep-disordered breathing[^2].
 
-![HRV extraction algorithm on raw ECG signals](/Resources/images/RRtachogram_new.pdf)
+![HRV extraction algorithm on raw ECG signals](/Resources/images/RRtachogram_new-1.png)
 
 ## Features
 
