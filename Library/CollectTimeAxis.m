@@ -408,7 +408,7 @@ classdef CollectTimeAxis < handle
         function setHRV(obj,rFS,adjust)
             % This will perform HRV extraction
             
-            % Extrac HRV
+            % Extract HRV
             RR = obj.getX('RR');
             RR_tm = round(obj.getTM('RR')*obj.getFS('qrs up'));
             RR_spline = RR_tm(1):RR_tm(end);
@@ -448,6 +448,57 @@ classdef CollectTimeAxis < handle
             obj.setX(HRV,'HRV');
             
         end
+
+        function setEDR(obj,rFS,adjust)
+            
+            % Extract Rpeak from ECG
+            Rloc = obj.getTM('qrs up');
+            ECG_up = obj.getX('EKG up');
+            R_peak = ECG_up(Rloc);
+
+            % extract Phase Space Reconstruction
+            interval = round(obj.getFS('qrs up') * 0.04);
+            ECG_up = obj.getX('EKG up');
+            R_area = zeros(size(Rloc));
+            for n = 1:length(Rloc)
+                QRS_interval_temp = ECG_up(Rloc(n) - interval:Rloc(n) + interval);
+                psr = phasespace(QRS_interval_temp);
+                R_area(n) = polyarea(psr(:,1), psr(:,2));
+            end
+            
+            % time axis
+            R_tm = obj.getTM('qrs up');
+            R_spline = R_tm(1):R_tm(end);
+            
+            % Discard axis
+            R_peak(obj.getDis('qrs up')>0) = [];
+            R_area(obj.getDis('qrs up')>0) = [];
+            R_tm(obj.getDis('qrs up')>0) = [];
+            
+            % Interpolation
+            sRR_EDR_peak = pchip(R_tm, R_peak, R_spline); % EDR_peak
+            sRR_EDR_psr = pchip(R_tm, R_area, R_spline); % EDR_psr
+            
+            % Resample
+            EDR_peak = sRR_EDR_peak(1:obj.getFS('qrs up')/rFS:end);
+            EDR_psr = sRR_EDR_psr(1:obj.getFS('qrs up')/rFS:end);
+
+            % add time series
+            obj.addTimeAxis(EDR_peak,rFS,[],startMargin,'EDR_peak');
+            obj.setDis(HRVex,'EDR_peak');
+            obj.addTimeAxis(EDR_psr,rFS,[],startMargin,'EDR_psr');
+            obj.setDis(HRVex,'EDR_psr');
+
+            % Edit HRV with DC in discarded areas:
+            if adjust
+                EDR_peak = obj.insertDC(EDR_peak);
+                EDR_psr = obj.insertDC(EDR_psr);
+            end
+
+            % add signal
+            obj.setX(EDR_peak,'EDR_peak');
+            obj.setX(EDR_psr,'EDR_psr');
+        
         
         function HRVa = insertDC(obj,HRV)
             % This function will perform interpolation points
