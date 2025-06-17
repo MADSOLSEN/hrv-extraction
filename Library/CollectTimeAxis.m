@@ -498,7 +498,7 @@ classdef CollectTimeAxis < handle
             % add signal
             obj.setX(EDR_peak,'EDR_peak');
             obj.setX(EDR_psr,'EDR_psr');
-        
+        end
         
         function HRVa = insertDC(obj,HRV)
             % This function will perform interpolation points
